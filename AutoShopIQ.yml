@@ -1,0 +1,852 @@
+app:
+  description: Smart repair recommendation system.
+  icon: 🚗
+  icon_background: '#D1E9FF'
+  mode: advanced-chat
+  name: AutoShopIQ
+  use_icon_as_answer_icon: true
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/google:0.0.8@3efcf55ffeef9d0f77715e0afb23534952ae0cb385c051d0637e86d71199d1a6
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.16@28da32a1a4b2856e28b27f78f12c841c73d585f8aa832288b110e79db371dc6e
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: Hi, I’m AutoShopIQ Bot — your assistant for car issues, repair
+      advice, and vehicle history. How can I help you today?
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - My engine is making a weird noise. What should I get checked?
+    - Can you pull up the past repair history for my vehicle?
+    - Can you tell me about the new Tesla Cybertruck?
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1744287436920-source-1744287546468-target
+      selected: false
+      source: '1744287436920'
+      sourceHandle: source
+      target: '1744287546468'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1744288350825-source-1744288566207-target
+      selected: false
+      source: '1744288350825'
+      sourceHandle: source
+      target: '1744288566207'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1744287546468-1744296170831-1744288350825-target
+      selected: false
+      source: '1744287546468'
+      sourceHandle: '1744296170831'
+      target: '1744288350825'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1744287546468-1744288229376-1744296242173-target
+      selected: false
+      source: '1744287546468'
+      sourceHandle: '1744288229376'
+      target: '1744296242173'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1744296242173-source-1744296262736-target
+      selected: false
+      source: '1744296242173'
+      sourceHandle: source
+      target: '1744296262736'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1744296262736-source-1744296280114-target
+      selected: false
+      source: '1744296262736'
+      sourceHandle: source
+      target: '1744296280114'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1744287546468-1-1744568884677-target
+      selected: false
+      source: '1744287546468'
+      sourceHandle: '1'
+      target: '1744568884677'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: http-request
+      id: 1744568884677-source-1744295136450-target
+      selected: false
+      source: '1744568884677'
+      sourceHandle: source
+      target: '1744295136450'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1744295136450-source-1744570716251-target
+      selected: false
+      source: '1744295136450'
+      sourceHandle: source
+      target: '1744570716251'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1744570716251-source-answer-target
+      selected: false
+      source: '1744570716251'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: http-request
+      id: 1744287546468-2-1744591724214-target
+      selected: false
+      source: '1744287546468'
+      sourceHandle: '2'
+      target: '1744591724214'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1744591724214-source-1744591743339-target
+      selected: false
+      source: '1744591724214'
+      sourceHandle: source
+      target: '1744591743339'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1744591743339-source-1744288028606-target
+      selected: false
+      source: '1744591743339'
+      sourceHandle: source
+      target: '1744288028606'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: Input car details.
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: Car Make
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: make
+        - label: Car Model
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: model
+        - label: Vehicle Information Number (VIN)
+          max_length: 17
+          options: []
+          required: false
+          type: text-input
+          variable: vin
+        - label: License Plate
+          max_length: 10
+          options: []
+          required: false
+          type: text-input
+          variable: license_plate
+        - label: 'Year of Manufacture '
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: year
+        - label: Mileage
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: mileage
+      height: 247
+      id: '1744287436920'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1744570716251.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 102
+      id: answer
+      position:
+        x: 1591.5053894778043
+        y: 282
+      positionAbsolute:
+        x: 1591.5053894778043
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        classes:
+        - id: '1'
+          name: User want to get repari recommendation for his vehicle {{{{#1744287436920.make#}}}}
+            {{{{#1744287436920.model#}}}} issue.
+        - id: '2'
+          name: 'User want to see the past repair for his vehicle  {{{{#1744287436920.make#}}}}
+            {{{{#1744287436920.model#}}}}
+
+            requires {{{{#1744287436920.vin#}}}} or {{{{#1744287436920.license_plate#}}}}'
+        - id: '1744288229376'
+          name: Other question related to cars
+        - id: '1744296170831'
+          name: Other questions
+        desc: ''
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '1744287436920'
+        - sys.query
+        selected: false
+        title: Question Classifier
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 370
+      id: '1744287546468'
+      position:
+        x: 380
+        y: 282
+      positionAbsolute:
+        x: 380
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1744591743339.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 2
+        type: answer
+        variables: []
+      height: 102
+      id: '1744288028606'
+      position:
+        x: 1291.5053894778043
+        y: 441.10654639882875
+      positionAbsolute:
+        x: 1291.5053894778043
+        y: 441.10654639882875
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: dbb69cf3-d3d2-49e8-b73b-0ad4b1ee2913
+          role: system
+          text: You are professional bot which ask user to stay on topic and ask about
+            vehicle issue
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744288350825'
+      position:
+        x: 684.4627348573649
+        y: 719.1129279149712
+      positionAbsolute:
+        x: 684.4627348573649
+        y: 719.1129279149712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1744288350825.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 3
+        type: answer
+        variables: []
+      height: 102
+      id: '1744288566207'
+      position:
+        x: 980
+        y: 719.1129279149712
+      positionAbsolute:
+        x: 980
+        y: 719.1129279149712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-374
+            key: ''
+            type: text
+            value: "{\n  \"point\": \"app.vehicle_recommendation.query\",\n  \"params\"\
+              : {\n    \"concern\": {{#1744568884677.text#}},\n    \"make\": \"{{#1744287436920.make#}}\"\
+              ,\n    \"model\": \"{{#1744287436920.model#}}\"\n  }\n}"
+          type: json
+        desc: ''
+        headers: 'Content-Type:application/json
+
+          Authorization:Bearer yap23003'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 'HTTP Request: Recommend'
+        type: http-request
+        url: https://415d-68-197-155-203.ngrok-free.app/recommend
+        variables: []
+      height: 134
+      id: '1744295136450'
+      position:
+        x: 980
+        y: 282
+      positionAbsolute:
+        x: 980
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: used for searching
+            ja_JP: used for searching
+            pt_BR: used for searching
+            zh_Hans: 用于搜索网页内容
+          label:
+            en_US: Query string
+            ja_JP: Query string
+            pt_BR: Query string
+            zh_Hans: 查询语句
+          llm_description: key words for searching
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          query: ''
+        provider_id: langgenius/google/google
+        provider_name: langgenius/google/google
+        provider_type: builtin
+        selected: false
+        title: GoogleSearch
+        tool_configurations: {}
+        tool_label: GoogleSearch
+        tool_name: google_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1744287546468.class_name#}}'
+        type: tool
+      height: 53
+      id: '1744296242173'
+      position:
+        x: 684.4627348573649
+        y: 600.6373661857044
+      positionAbsolute:
+        x: 684.4627348573649
+        y: 600.6373661857044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1744296242173'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 4d4cc380-471b-4930-85a8-6fbf6f76adc6
+          role: system
+          text: "You are a helpful assistant. \nUse the following context as your\
+            \ learned knowledge, inside <context></context> XML tags.\n<context>\n\
+            {{#1744296242173.text#}}\n</context>\nWhen answer to user:\n- If you don't\
+            \ know, just say that you don't know.\n- If you don't know when you are\
+            \ not sure, ask for clarification.\nAvoid mentioning that you obtained\
+            \ the information from the context.\nAnd answer according to the language\
+            \ of the user's question."
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744296262736'
+      position:
+        x: 980
+        y: 600.6373661857044
+      positionAbsolute:
+        x: 980
+        y: 600.6373661857044
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1744296262736.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 4
+        type: answer
+        variables: []
+      height: 102
+      id: '1744296280114'
+      position:
+        x: 1291.5053894778043
+        y: 600.6373661857044
+      positionAbsolute:
+        x: 1291.5053894778043
+        y: 600.6373661857044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: e821f37b-7e5d-4b7b-b310-c64d69511f0f
+          role: system
+          text: "You are a smart vehicle assistant.\n\nYour job is to extract and\
+            \ simplify the user’s car concern into a short keyword or phrase.\nKeep\
+            \ it concise and aligned with repair records, such as:\n- “grinding brakes”\n\
+            - “engine noise”\n- “battery dead”\n- “car overheating”\n\nExample input:\
+            \ “I hear a strange noise when I drive my car”  \n→ Output: “engine noise”\n\
+            \nExample input: “Car shakes and makes loud thumping when braking”  \n\
+            → Output: “brake noise”\n\nNow simplify: \"{{ {{#sys.query#}} }}\""
+        selected: false
+        title: 'LLM: User Concern'
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744568884677'
+      position:
+        x: 680
+        y: 282
+      positionAbsolute:
+        x: 680
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 78b940c3-43fd-4272-813e-d33403974b95
+          role: system
+          text: "```xml\n<instructions>\nYou are a helpful vehicle repair assistant.\
+            \ Your task is to provide service recommendations based on repair records\
+            \ for a specific car model and a given service request. \n\n**Instructions:**\n\
+            \n1. **Analyze the input data:**\n    - Access the repair records provided\
+            \ in the input.\n    - Identify the car make and model from the input.\n\
+            \    - Extract the service request from the input.\n2. **Generate service\
+            \ recommendations:**\n    - Based on the repair records, identify the\
+            \ top service recommendations for the given service request.\n    - For\
+            \ each recommendation, include the following information:\n        - Labor\
+            \ job description\n        - Confidence level (number of cases where this\
+            \ service was performed)\n        - Estimated time for the job\n     \
+            \   - Parts used, including:\n            - Part name (with part code\
+            \ separated for readability if present)\n            - Cost of the part\n\
+            \            - Relevance level for the part (percentage)\n3. **Format\
+            \ the output:**\n    - Present the recommendations in a clear and concise\
+            \ manner, using bullet points and appropriate formatting.\n    - Use friendly\
+            \ language suitable for a car owner, not a mechanic.\n    - Do not include\
+            \ any XML tags in the output.\n\n**Example Input:**\n\n```json\n{\n  \"\
+            total_records\": 1000,\n  \"make\": \"Toyota\",\n  \"model\": \"Camry\"\
+            ,\n  \"text\": \"Engine light is on\"\n}\n```\n\n**Example Output:**\n\
+            \nBased on **1000 repair records** of **Toyota Camry**, here are the top\
+            \ service recommendations for **\"Engine light is on\"**:\n\n1. **Oxygen\
+            \ Sensor Replacement**\n   - Confidence: Seen in 200 cases\n   - Estimated\
+            \ Time: 1.5 hours\n   - Parts Used:\n     • Oxygen Sensor (23456) — $120\
+            \ (80% Relevance)\n     • Gasket — $10 (95% Relevance)\n\n2. **Spark Plug\
+            \ Replacement**\n   - Confidence: Seen in 150 cases\n   - Estimated Time:\
+            \ 2 hours\n   - Parts Used:\n     • Spark Plug Set (12345) — $50 (75%\
+            \ Relevance)\n\n3. **Mass Airflow Sensor Cleaning**\n   - Confidence:\
+            \ Seen in 100 cases\n   - Estimated Time: 0.5 hours\n   - Parts Used:\n\
+            \     • Mass Airflow Sensor Cleaner — $15 (90% Relevance)\n\n**Example\
+            \ Input:**\n\n```json\n{\n  \"total_records\": 500,\n  \"make\": \"Honda\"\
+            ,\n  \"model\": \"Civic\",\n  \"text\": \"Brakes are squeaking\"\n}\n\
+            ```\n\n**Example Output:**\n\nBased on **500 repair records** of **Honda\
+            \ Civic**, here are the top service recommendations for **\"Brakes are\
+            \ squeaking\"**:\n\n1. **Front Brake Pad Replacement**\n   - Confidence:\
+            \ Seen in 150 cases\n   - Estimated Time: 1 hour\n   - Parts Used:\n \
+            \    • Front Brake Pad Set (10202) — $80 (85% Relevance)\n     • Brake\
+            \ Rotor (10203) — $100 (50% Relevance)\n\n2. **Rear Brake Pad Replacement**\n\
+            \   - Confidence: Seen in 100 cases\n   - Estimated Time: 0.75 hours\n\
+            \   - Parts Used:\n     • Rear Brake Pad Set (10204) — $70 (70% Relevance)\n\
+            \     • Brake Rotor (10205) — $90 (40% Relevance)\n\n3. **Brake Fluid\
+            \ Flush**\n   - Confidence: Seen in 50 cases\n   - Estimated Time: 0.5\
+            \ hours\n   - Parts Used:\n     • Brake Fluid — $20 (95% Relevance)\n\n\
+            **Example Input:**\n\n```json\n{\n  \"total_records\": 200,\n  \"make\"\
+            : \"Ford\",\n  \"model\": \"Focus\",\n  \"text\": \"AC is not working\"\
+            \n}\n```\n\n**Example Output:**\n\nBased on **200 repair records** of\
+            \ **Ford Focus**, here are the top service recommendations for **\"AC\
+            \ is not working\"**:\n\n1. **AC Refrigerant Recharge**\n   - Confidence:\
+            \ Seen in 80 cases\n   - Estimated Time: 1 hour\n   - Parts Used:\n  \
+            \   • AC Refrigerant — $50 (90% Relevance)\n\n2. **AC Compressor Replacement**\n\
+            \   - Confidence: Seen in 30 cases\n   - Estimated Time: 2.5 hours\n \
+            \  - Parts Used:\n     • AC Compressor (12345) — $300 (70% Relevance)\n\
+            \n3. **AC Condenser Replacement**\n   - Confidence: Seen in 20 cases\n\
+            \   - Estimated Time: 2 hours\n   - Parts Used:\n     • AC Condenser (12346)\
+            \ — $250 (60% Relevance)\n</instructions>\n```\nCar: {{#1744287436920.make#}}{{#1744287436920.model#}}\n\
+            Concern: {{#1744568884677.text#}}\nRecommendation: {{#1744295136450.body#}}"
+        selected: false
+        title: 'LLM: Repair Recommendations '
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744570716251'
+      position:
+        x: 1291.5053894778043
+        y: 282
+      positionAbsolute:
+        x: 1291.5053894778043
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-994
+            key: ''
+            type: text
+            value: "{\n  \"point\": \"app.vehicle_history.query\",\n  \"params\":\
+              \ {\n    \"vin\": \"{{#1744287436920.vin#}}\",\n    \"license_plate\"\
+              : \"{{#1744287436920.license_plate#}}\"\n  }\n}"
+          type: json
+        desc: ''
+        headers: 'Content-Type:application/json
+
+          Authorization:Bearer yap23003'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 'HTTP Request: History'
+        type: http-request
+        url: https://415d-68-197-155-203.ngrok-free.app/history
+        variables: []
+      height: 134
+      id: '1744591724214'
+      position:
+        x: 680
+        y: 441.10654639882875
+      positionAbsolute:
+        x: 680
+        y: 441.10654639882875
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 615358b2-1f0c-4e73-a2a8-be4407a62474
+          role: system
+          text: "```xml\n<instruction>\nYou are a helpful assistant providing a detailed\
+            \ repair history for a specific vehicle. \n\n**Instructions:**\n\n1. **Process\
+            \ Input:**  \n   - Access the provided vehicle information (make, model,\
+            \ year, VIN, license plate).\n   - Retrieve the repair history records\
+            \ associated with the vehicle.\n   - If no records are found, return a\
+            \ message indicating that no repair history is available.\n\n2. **Format\
+            \ Output:**\n   - If repair records exist, format the output as follows:\n\
+            \     - **Vehicle Information:** Display the vehicle's make, model, year,\
+            \ VIN (if available), and license plate (if available).\n     - **Repair\
+            \ History:**\n       - Display the total number of repair records found.\n\
+            \       - For each record:\n         - Display the invoice number with\
+            \ the total invoice cost\n         - Display the customer concerns (or\
+            \ \"N/A\" if none).\n         - List the jobs performed during the repair.\n\
+            \   - If no repair records exist, return the message: \"I'm sorry, we\
+            \ couldn't find any past repair records for this vehicle based on the\
+            \ VIN or license plate provided.\"\n\n3. **Output Format:**\n   - Do not\
+            \ include any XML tags in the output.\n   - Use clear and concise language.\n\
+            \   - Maintain the formatting structure provided in the example outputs.\n\
+            \n**Examples:**\n\n<example>\n**Input:**\n- Make: Toyota\n- Model: Camry\n\
+            - Year: 2018\n- VIN: 123ABC456DEF789\n- Repair History Records:\n   -\
+            \ Record 1:\n      - Invoice Number: 35565 | Total Cost: $458.59\n   \
+            \   - Mileage: 20,000\n      - Customer Concerns: Engine noise\n     \
+            \ - Jobs Performed: Engine oil change, spark plug replacement\n   - Record\
+            \ 2:\n      - Invoice Number: 35965 | Total Cost: $458.59\n      - Mileage:\
+            \ 50,000\n      - Customer Concerns: Brake squeaking\n      - Jobs Performed:\
+            \ Brake pad replacement, brake fluid flush\n\n**Output:**\n\U0001F9FE\
+            \ **Vehicle Information**\n- **Make:** Toyota\n- **Model:** Camry\n- **Year**\
+            \ (2018)\n- **VIN:** 123ABC456DEF789\n\n\U0001F6E0️ **Repair History (2\
+            \ record(s))**\n\n1. **Invoice Number:** 35565 | Total Cost: $458.59\n\
+            - **Mileage:** 30,000\n- **Customer Concerns:** Engine noise\n- **Jobs\
+            \ Performed:** \n   • Engine oil change\n   • Spark plug replacement\n\
+            2. **Invoice Number:** 35965 | Total Cost: $458.59\n- **Mileage:** 50,000\n\
+            - **Customer Concerns:** Brake squeaking\n- **Jobs Performed:** \n   •\
+            \ Brake pad replacement\n   • Brake fluid flush\n\nLet me know if you'd\
+            \ like to explore recommendations based on these repairs.\n</example>\n\
+            \n<example>\n**Input:**\n- Make: Honda\n- Model: Civic\n- Year: 2020\n\
+            - VIN: 987XYZ6543210\n- Repair History Records: [] (Empty list)\n\n**Output:**\n\
+            I'm sorry, we couldn't find any past repair records for this vehicle based\
+            \ on the VIN or license plate provided.\n</example>\n</instruction>\n\
+            ```\n\n{{#1744287436920.make#}}{{#1744287436920.model#}}\n{{#1744287436920.vin#}}\n\
+            {{#1744287436920.license_plate#}}\n{{#1744287436920.year#}}\n{{#1744591724214.body#}}\n"
+        selected: false
+        title: 'LLM: Repair History'
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744591743339'
+      position:
+        x: 980
+        y: 441.10654639882875
+      positionAbsolute:
+        x: 980
+        y: 441.10654639882875
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -51.47122296002556
+      y: -91.62974671586244
+      zoom: 0.7880457457801481
