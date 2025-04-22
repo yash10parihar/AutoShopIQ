@@ -25,6 +25,7 @@ class UniversalVehicleRecommender:
             return json.load(f)
 
     def process_repair_orders(self):
+        noisy_keywords = {'diagnostic fee', 'labor', 'used car inspection'}
         repair_data = []
         for entry in self.data:
             ro = entry.get('repair_order', {})
@@ -41,6 +42,8 @@ class UniversalVehicleRecommender:
 
                 for job in ro.get('jobs', []):
                     labor_job = job.get('description', '').strip().lower()
+                    if any(keyword in labor_job for keyword in noisy_keywords):
+                        continue
                     parts = [(p.get('name', '').strip().lower(), float(p.get('cost', 0.0))) for p in job.get('parts', []) if p.get('name')]
 
                     repair_data.append({
